@@ -12,12 +12,23 @@ pygame.display.set_caption('Bouncing Ball Simulation')
 # Define colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+
+chords = {
+    "F_C": pygame.mixer.Sound('sounds/F_3rd.mp3'),
+    "F_Db": pygame.mixer.Sound('sounds/Db_3rd.mp3'),
+    "Eb_C": pygame.mixer.Sound('sounds/Eb_3rd.mp3'),
+    "Eb_Bb": pygame.mixer.Sound('sounds/Bb_3rd.mp3'),
+}
+
 
 # Clock to control the frame rate
 clock = pygame.time.Clock()
 
 
-ball_pos = [400, 300]
+ball_pos = [400, 100]
 ball_radius = 15
 ball_speed_y = 0
 gravity = 0.5
@@ -42,10 +53,18 @@ while running:
     ball_pos[1] += ball_speed_y
 
     # Bounce off the rings
-    for ring_y, _ in rings:
-        if ball_pos[1] + ball_radius > ring_y > ball_pos[1] - ball_radius:
-            ball_speed_y *= bounce_factor
-            bounce_sound.play()  # Play the bounce sound
+    for index, (ring_y, _) in enumerate(rings):
+      if ball_pos[1] + ball_radius > ring_y > ball_pos[1] - ball_radius:
+          ball_speed_y *= bounce_factor
+          # Play the corresponding chord sound
+          if index == 0:
+              chords["F_C"].play()
+          elif index == 1:
+              chords["F_Db"].play()
+          elif index == 2:
+              chords["Eb_C"].play()
+          elif index == 3:
+              chords["Eb_Bb"].play()
 
     # Draw everything
     screen.fill(BLACK)
