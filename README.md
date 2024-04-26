@@ -2,6 +2,10 @@
 simple physics engine toy demo
 
 
+![alt text](assets/image.png)
+
+
+
 ## Usage
 
 ```
