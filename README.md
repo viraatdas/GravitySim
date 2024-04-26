@@ -1,5 +1,5 @@
 # GravitySim
-simple physics engine toy demo
+simple physics engine toy demo that makes sound 
 
 
 ![alt text](assets/image.png)
